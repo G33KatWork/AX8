@@ -20,8 +20,12 @@ ROMADDRESSWIDTH = 10
 
 #Important! If you change this, change it in the scr files in build/scripts, too!
 TARGETFPGA = xc3s700an-fgg484-4
+BOARD = starterkit
 
-CONSTRAINTS = $(TARGET)_constraints.ucf
+TARGETFPGA = xc3s1200e-fg320-4
+BOARD = nexys2
+
+CONSTRAINTS = $(TARGET)_$(BOARD)_constraints.ucf
 XSTSCRIPT = build/scripts/$(TARGET).scr
 
 #--------------------------------------------------------------------
@@ -46,7 +50,10 @@ all: $(TARGET).bit
 buildrom:
 	$(HEX2ROM) $(HEXFILE) $(ROMNAME) $(ROMADDRESSWIDTH)l16x > $(OBJDIR)/ROM.vhd
 
-synthesize:
+prepare:
+	cat $(PROJECTROOT)/$(XSTSCRIPT).tpl | sed -e "s/TARGET/$(TARGETFPGA)/" > $(PROJECTROOT)/$(XSTSCRIPT) 
+
+synthesize: prepare
 	cd $(OBJDIR); $(XST) -ifn $(PROJECTROOT)/$(XSTSCRIPT)
 	cd $(OBJDIR); $(NGDBUILD) -p $(TARGETFPGA) -uc $(PROJECTROOT)/$(CONSTRAINTS) $(TARGET).ngc $(TARGET).ngd
 
