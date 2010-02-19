@@ -11,10 +11,18 @@ PROJECTROOT = $(shell pwd)
 #ROMADDRESSWIDTH = 9
 
 #Uncomment this for the 2313 avr
-TARGET = a90s2313
-HEXFILE = sw/2313_test/test.hex
+#TARGET = a90s2313
+#HEXFILE = sw/2313_test/test.hex
 #instance name, see a90s2313.vhd
-ROMNAME = ROM2313
+#ROMNAME = ROM2313
+#address width, see a90s2313.vhd
+#ROMADDRESSWIDTH = 10
+
+#Uncomment this for the andy avr
+TARGET = a90sandy
+HEXFILE = sw/andy_test/test.hex
+#instance name, see a90s2313.vhd
+ROMNAME = ROMandy
 #address width, see a90s2313.vhd
 ROMADDRESSWIDTH = 10
 
