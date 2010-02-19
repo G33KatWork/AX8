@@ -1,0 +1,9 @@
+# Nexys2 rev A board
+NET "clk" TNM_NET = "clk";
+TIMESPEC "TS_clk" = PERIOD "clk" 20 ns HIGH 50%;
+
+NET "clk" LOC = "B8"| IOSTANDARD = LVCMOS33 ;
+NET "reset_n" LOC = "B18" | IOSTANDARD = LVCMOS33 | PULLDOWN ;   #SW0
+
+NET "rxd" LOC = "U6" | IOSTANDARD = LVCMOS33 ;
+NET "txd" LOC = "P9" | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW;
